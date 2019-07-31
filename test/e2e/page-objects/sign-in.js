@@ -4,7 +4,7 @@ const PASSWORD_SELECTOR = '[type="password"]';
 const SUBMIT_SELECTOR = '[type="submit"]';
 const ERROR_SELECTOR = '.error';
 
-module.exports = (page) => {
+module.exports = page => {
     return {
         async isVisible() {
             return page.waitForSelector(FORM_SELECTOR, { timeout: 10000 });
@@ -24,5 +24,5 @@ module.exports = (page) => {
         async hasSubmissionError() {
             await page.waitForSelector(ERROR_SELECTOR, { timeout: 10000 });
         }
-    }
-}
+    };
+};

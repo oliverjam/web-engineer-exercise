@@ -5,19 +5,19 @@ async function page(path) {
     const page = await browser.newPage();
 
     await page.goto(`localhost:8080${path}`);
-    
-    return { browser, page }; 
+
+    return { browser, page };
 }
 
 /**
- * 
- * @param {string} path 
- * @param {[{ url: string, fixture: object }]} mocks 
+ *
+ * @param {string} path
+ * @param {[{ url: string, fixture: object }]} mocks
  */
 async function pageWithNetworkMocks(path, mocks) {
     const browser = await puppeteer.launch({
         headless: false,
-        'args': ['--disable-web-security']
+        args: ['--disable-web-security']
     });
     const page = await browser.newPage();
     let mockInc = 0;
@@ -33,8 +33,8 @@ async function pageWithNetworkMocks(path, mocks) {
     });
 
     await page.goto(`localhost:8080${path}`);
-    
-    return { browser, page }; 
+
+    return { browser, page };
 }
 
 module.exports = { page, pageWithNetworkMocks };

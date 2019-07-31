@@ -1,14 +1,10 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-export default function Apps({
-    error,
-    items,
-    fetchApps
-}) { 
+export default function Apps({ error, items, fetchApps }) {
     if (!items || !items.length) {
         fetchApps();
-        return (<div>LOADING APPS...</div>);
+        return <div>LOADING APPS...</div>;
     }
 
     return (
@@ -18,7 +14,12 @@ export default function Apps({
                     <li class="app">
                         <Link to={`/apps/${id}`}>
                             <p>{name}</p>
-                            <img src={logo} alt={name} width="100" height="100"/>
+                            <img
+                                src={logo}
+                                alt={name}
+                                width="100"
+                                height="100"
+                            />
                         </Link>
                     </li>
                 );

@@ -7,14 +7,15 @@ import { authenticate } from '../actions/sign-in';
 const mapStateToProps = (state, router) => {
     const { error, requesting } = state.signIn;
     const redirect = router.history.push;
-    
+
     return { error, requesting, redirect };
 };
 
 const mapDispatchToProps = (dispatch, props) => {
     return {
-        authenticate: (email, password) => dispatch(authenticate(email, password))
-    }
+        authenticate: (email, password) =>
+            dispatch(authenticate(email, password))
+    };
 };
 
 export default withRouter(

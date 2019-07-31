@@ -17,20 +17,23 @@ function appsError() {
 }
 
 export function fetchApps() {
-    return async function (dispatch) {    
-        dispatch(appsRequesting());        
+    return async function(dispatch) {
+        dispatch(appsRequesting());
 
-        const response = await fetch('https://guarded-thicket-22918.herokuapp.com/apps', {
-            headers: {
-                'Authorization': getAccessToken(),
-                'Content-Type': 'application/json'
+        const response = await fetch(
+            'https://guarded-thicket-22918.herokuapp.com/apps',
+            {
+                headers: {
+                    Authorization: getAccessToken(),
+                    'Content-Type': 'application/json'
+                }
             }
-        });
+        );
 
         if (!response.ok) return dispatch(appsError());
 
         const { apps } = await response.json();
 
         return dispatch(appsSuccess(apps));
-    }
+    };
 }

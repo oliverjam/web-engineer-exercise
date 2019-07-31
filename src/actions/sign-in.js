@@ -29,25 +29,31 @@ export async function isValidToken() {
 
     if (!token) return false;
 
-    const validTokenRequest = await fetch('https://guarded-thicket-22918.herokuapp.com/', {
-        headers: { 'Authorization': token }
-    });
+    const validTokenRequest = await fetch(
+        'https://guarded-thicket-22918.herokuapp.com/',
+        {
+            headers: { Authorization: token }
+        }
+    );
     const { error } = await response.json();
 
     return !error;
 }
 
-export function authenticate (email, password) {
-    return async function (dispatch) {    
+export function authenticate(email, password) {
+    return async function(dispatch) {
         dispatch(authenticationRequesting());
-        const response = await fetch('https://guarded-thicket-22918.herokuapp.com/login', {
-            method: 'post',
-            headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({ email, password })
-        });
+        const response = await fetch(
+            'https://guarded-thicket-22918.herokuapp.com/login',
+            {
+                method: 'post',
+                headers: {
+                    Accept: 'application/json',
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ email, password })
+            }
+        );
 
         if (!response.ok) return dispatch(authenticationError());
 
@@ -56,5 +62,5 @@ export function authenticate (email, password) {
         setAccessToken(accessToken);
 
         return dispatch(authenticationSuccess());
-    }
+    };
 }

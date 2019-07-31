@@ -11,10 +11,7 @@ import Users from './containers/Users.jsx';
 
 import rootReducer from './reducers/root-reducer';
 
-const store = createStore(
-    rootReducer,
-    applyMiddleware(thunk)
-);
+const store = createStore(rootReducer, applyMiddleware(thunk));
 
 ReactDOM.render(
     <Provider store={store}>

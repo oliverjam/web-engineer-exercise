@@ -10,30 +10,22 @@ const initialState = {
     error: null
 };
 
-export default function signIn (state = initialState, action) {
+export default function signIn(state = initialState, action) {
     const { type } = action;
 
     switch (type) {
-        case AUTHENTICATION_REQUEST: 
+        case AUTHENTICATION_REQUEST:
             return Object.assign({}, state, { requesting: true });
-        case AUTHENTICATION_SUCCESS: 
-            return Object.assign(
-                {},
-                state,
-                {
-                    requesting: false,
-                    success: true
-                }
-            );
-        case AUTHENTICATION_ERROR: 
-            return Object.assign(
-                {},
-                state,
-                {
-                    requesting: false,
-                    error: true
-                }
-            );
+        case AUTHENTICATION_SUCCESS:
+            return Object.assign({}, state, {
+                requesting: false,
+                success: true
+            });
+        case AUTHENTICATION_ERROR:
+            return Object.assign({}, state, {
+                requesting: false,
+                error: true
+            });
         default:
             return state;
     }

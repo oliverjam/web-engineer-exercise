@@ -3,7 +3,7 @@ const USERS_PREVIOUS_NAVIGATION_DISABLED_SELECTOR = '#users .nav span.previous';
 const USERS_NEXT_NAVIGATION_DISABLED_SELECTOR = '#users .nav span.next';
 const USERS_ITEMS_SELECTOR = '#users ul:nth-child(2) li';
 
-module.exports = (page) => {
+module.exports = page => {
     return {
         async isVisible() {
             return page.waitForSelector(USERS_SELECTOR, { timeout: 10000 });
@@ -19,10 +19,16 @@ module.exports = (page) => {
             });
         },
         async assertPreviousLinkDisabled() {
-            return page.waitForSelector(USERS_PREVIOUS_NAVIGATION_DISABLED_SELECTOR, { timeout: 10000 });
+            return page.waitForSelector(
+                USERS_PREVIOUS_NAVIGATION_DISABLED_SELECTOR,
+                { timeout: 10000 }
+            );
         },
         async assertNextLinkDisabled() {
-            return page.waitForSelector(USERS_NEXT_NAVIGATION_DISABLED_SELECTOR, { timeout: 10000 });
+            return page.waitForSelector(
+                USERS_NEXT_NAVIGATION_DISABLED_SELECTOR,
+                { timeout: 10000 }
+            );
         }
-    }
-}
+    };
+};

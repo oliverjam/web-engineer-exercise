@@ -21,7 +21,7 @@ describe('/users', () => {
         const signin = signinObject(page);
         const users = usersObject(page);
         const apps = appsObject(page);
-        
+
         await signin.enterUserName('foo@bar.com');
         await signin.enterPassword('hunter2');
         await signin.clickSubmit();
@@ -40,7 +40,7 @@ describe('/users', () => {
         const signin = signinObject(page);
         const users = usersObject(page);
         const apps = appsObject(page);
-        
+
         await signin.enterUserName('foo@bar.com');
         await signin.enterPassword('hunter2');
         await signin.clickSubmit();
@@ -55,18 +55,21 @@ describe('/users', () => {
     });
 
     it('the user can not click the "next" page link when they are on the last page of users', async () => {
-        const { page, browser } = await setup.pageWithNetworkMocks('/', [{
-            url: 'https://guarded-thicket-22918.herokuapp.com/apps/0fe0a330-12d3-4155-9af1-c4c1cc29b33f/users',
-            fixture: {
-                status: 200,
-                content: 'application/json',
-                body: JSON.stringify(usersResponseWithLessThan25)
+        const { page, browser } = await setup.pageWithNetworkMocks('/', [
+            {
+                url:
+                    'https://guarded-thicket-22918.herokuapp.com/apps/0fe0a330-12d3-4155-9af1-c4c1cc29b33f/users',
+                fixture: {
+                    status: 200,
+                    content: 'application/json',
+                    body: JSON.stringify(usersResponseWithLessThan25)
+                }
             }
-        }]);
+        ]);
         const signin = signinObject(page);
         const users = usersObject(page);
         const apps = appsObject(page);
-        
+
         await signin.enterUserName('foo@bar.com');
         await signin.enterPassword('hunter2');
         await signin.clickSubmit();
