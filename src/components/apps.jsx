@@ -12,7 +12,7 @@ export default function Apps({ error, items, fetchApps }) {
             {items.map(({ id, name, logo }) => {
                 return (
                     <li class="app">
-                        <Link to={`/apps/${id}`}>
+                        <Link to={`/apps/${id}/1`}>
                             <p>{name}</p>
                             <img
                                 src={logo}

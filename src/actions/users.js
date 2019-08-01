@@ -16,12 +16,13 @@ function usersError() {
     return { type: USERS_ERROR };
 }
 
-export function fetchUsers(appId) {
+export function fetchUsers(appId, page) {
     return async function(dispatch) {
         dispatch(usersRequesting());
 
+        const offset = page * 25;
         const response = await fetch(
-            `https://guarded-thicket-22918.herokuapp.com/apps/${appId}/users`,
+            `https://guarded-thicket-22918.herokuapp.com/apps/${appId}/users?offset=${offset}`,
             {
                 headers: {
                     Authorization: getAccessToken(),

@@ -5,15 +5,17 @@ import { fetchUsers } from '../actions/users';
 import Users from '../components/users.jsx';
 
 function mapStateToProps(state, router) {
-    const { items, error } = state.users;
+    const { items, requesting } = state.users;
     const appId = router.match.params.id;
+    const page = parseInt(router.match.params.page, 10);
 
-    return { error, items, appId };
+    return { requesting, items, appId, page };
 }
 
 function mapDispatchToProps(dispatch, router) {
+    const { id, page } = router.match.params;
     return {
-        fetchUsers: () => dispatch(fetchUsers(router.match.params.id))
+        fetchUsers: () => dispatch(fetchUsers(id, parseInt(page, 10)))
     };
 }
 
