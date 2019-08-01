@@ -35,11 +35,13 @@ export default class SignIn extends Component {
                     placeholder="Email address"
                     type="email"
                     pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
+                    required
                 />
                 <input
                     onChange={this.handleChange}
                     placeholder="Password"
                     type="password"
+                    required
                 />
                 <input type="submit" />
             </form>
