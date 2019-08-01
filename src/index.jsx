@@ -6,6 +6,7 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import thunk from 'redux-thunk';
 
 import SignIn from './containers/sign-in.jsx';
+import ProtectedRoute from './containers/protected-route.jsx';
 import Apps from './containers/Apps.jsx';
 import Users from './containers/Users.jsx';
 
@@ -18,8 +19,8 @@ ReactDOM.render(
         <Router>
             <Switch>
                 <Route exact path="/" component={SignIn} />
-                <Route exact path="/apps" component={Apps} />
-                <Route path="/apps/:id/:page" component={Users} />
+                <ProtectedRoute exact path="/apps" component={Apps} />
+                <ProtectedRoute path="/apps/:id/:page" component={Users} />
             </Switch>
         </Router>
     </Provider>,
