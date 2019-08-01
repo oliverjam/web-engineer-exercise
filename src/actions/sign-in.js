@@ -24,20 +24,24 @@ export function getAccessToken() {
     return window.localStorage.getItem(TOKEN_NAME);
 }
 
-export async function isValidToken() {
-    const token = getAccessToken();
+export function isValidToken() {
+    return async function(dispatch) {
+        const token = getAccessToken();
 
-    if (!token) return false;
+        if (!token) return dispatch(authenticationError());
 
-    const validTokenRequest = await fetch(
-        'https://guarded-thicket-22918.herokuapp.com/',
-        {
-            headers: { Authorization: token }
-        }
-    );
-    const { error } = await response.json();
+        dispatch(authenticationRequesting());
+        const response = await fetch(
+            'https://guarded-thicket-22918.herokuapp.com/',
+            {
+                headers: { Authorization: token }
+            }
+        );
+        const { error } = await response.json();
 
-    return !error;
+        if (!response.ok || error) return dispatch(authenticationError());
+        return dispatch(authenticationSuccess());
+    };
 }
 
 export function authenticate(email, password) {

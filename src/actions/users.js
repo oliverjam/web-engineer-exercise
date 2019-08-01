@@ -1,4 +1,4 @@
-import { getAccessToken } from './sign-in';
+import { isValidToken, getAccessToken } from './sign-in';
 
 export const USERS_REQUEST = 'USERS_REQUEST';
 export const USERS_SUCCESS = 'USERS_SUCCESS';
@@ -18,6 +18,8 @@ function usersError() {
 
 export function fetchUsers(appId, page) {
     return async function(dispatch) {
+        await dispatch(isValidToken());
+
         dispatch(usersRequesting());
 
         const offset = page * 25;

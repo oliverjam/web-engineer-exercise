@@ -1,4 +1,4 @@
-import { getAccessToken } from './sign-in';
+import { getAccessToken, isValidToken } from './sign-in';
 
 export const APPS_REQUEST = 'APPS_REQUEST';
 export const APPS_SUCCESS = 'APPS_SUCCESS';
@@ -18,6 +18,8 @@ function appsError() {
 
 export function fetchApps() {
     return async function(dispatch) {
+        await dispatch(isValidToken());
+
         dispatch(appsRequesting());
 
         const response = await fetch(
