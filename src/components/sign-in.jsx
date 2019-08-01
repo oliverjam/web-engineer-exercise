@@ -30,19 +30,25 @@ export default class SignIn extends Component {
     render() {
         return (
             <form id="sign-in" onSubmit={this.handleSubmit}>
-                <input
-                    onChange={this.handleChange}
-                    placeholder="Email address"
-                    type="email"
-                    pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
-                    required
-                />
-                <input
-                    onChange={this.handleChange}
-                    placeholder="Password"
-                    type="password"
-                    required
-                />
+                <label htmlFor="email">
+                    Email
+                    <input
+                        id="email"
+                        onChange={this.handleChange}
+                        type="email"
+                        pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
+                        required
+                    />
+                </label>
+                <label htmlFor="password">
+                    Password
+                    <input
+                        id="password"
+                        onChange={this.handleChange}
+                        type="password"
+                        required
+                    />
+                </label>
                 <input type="submit" />
             </form>
         );
